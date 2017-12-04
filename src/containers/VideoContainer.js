@@ -4,35 +4,35 @@ import {getVideos} from "../api";
 
 class VideoContainer extends React.Component {
 
-    onClick = () => {
-        alert('test');
-    };
-
     constructor(props) {
         super(props);
 
         this.state = {
-            videos: []
+            videos: [],
+            nextAPIPageToken: undefined
         };
 
         this.loadVideos = this.loadVideos.bind(this);
     }
 
+    loadVideos(response) {
+        this.setState({
+            videos: this.state.videos.concat(response.items),
+            nextAPIPageToken: response.nextPageToken
+        });
+    }
+
     componentDidMount() {
-        getVideos(this.loadVideos);
+        getVideos(this.loadVideos, this.state.nextAPIPageToken);
     }
 
     render() {
+
         return <VideoList
             videos={this.state.videos}
         />
     };
 
-    loadVideos(response) {
-        this.setState({
-            videos: response.items
-        });
-    }
 }
 
 export default VideoContainer;

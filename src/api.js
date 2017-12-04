@@ -1,8 +1,14 @@
+export const getVideos = (callback, nextPageToken) => {
+
+    let apiEndpoint = 'https://www.googleapis.com/youtube/v3/search' +
+        '?key=AIzaSyBeimXtjgzfQcogY-fP8_CHPybmLpFaieo&part=snippet&type=video&q=surf&maxResults=12';
 
 
-export const getVideos = (callback) => {
+    if (nextPageToken) {
+        apiEndpoint += '&pageToken=' + nextPageToken;
+    }
 
-    fetch('http://localhost:3000/test.json')
+    fetch(apiEndpoint)
         .then(response => {
             return response.json();
         }).then(data => {
