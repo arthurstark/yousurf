@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
-import VideoContainer from './VideoContainer';
+import FilterableVideoList from "./FilterableVideoList";
 
 class App extends Component {
     render() {
-        return <VideoContainer/>;
+        return <FilterableVideoList />;
     }
 }
 
