@@ -1,6 +1,7 @@
 import React from 'react';
 import VideoList from '../components/VideoList';
 import {getVideos} from "../api";
+import InfiniteScroll from 'react-infinite-scroller';
 
 class VideoContainer extends React.Component {
 
@@ -9,10 +10,11 @@ class VideoContainer extends React.Component {
 
         this.state = {
             videos: [],
-            nextAPIPageToken: undefined
+            nextAPIPageToken: false
         };
 
         this.loadVideos = this.loadVideos.bind(this);
+        this.loadMore = this.loadMore.bind(this)
     }
 
     loadVideos(response) {
@@ -22,15 +24,27 @@ class VideoContainer extends React.Component {
         });
     }
 
-    componentDidMount() {
+    loadMore(page) {
+        console.log(this.state.nextAPIPageToken);
         getVideos(this.loadVideos, this.state.nextAPIPageToken);
     }
 
     render() {
+        const loader = <div className="loader text-center">Loading ...</div>;
 
-        return <VideoList
-            videos={this.state.videos}
-        />
+        return (
+            <InfiniteScroll
+                loadMore={this.loadMore}
+                initialLoad={true}
+                loader={loader}
+                hasMore={true}>
+
+                <VideoList
+                    videos={this.state.videos}
+                />
+
+            </InfiniteScroll>
+        )
     };
 
 }

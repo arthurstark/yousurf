@@ -23,12 +23,12 @@ class FilterableVideoList extends React.Component {
 
     render() {
         return (
-            <div>
+            <section>
                 <SearchContainer
                     onFilterTextChange = {this.onFilterTextChange}
                 />
                 <VideoContainer/>
-            </div>
+            </section>
         );
     }
 }
