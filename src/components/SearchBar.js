@@ -2,11 +2,11 @@ import React from 'react';
 import FieldGroup from 'react-bootstrap/lib/FormControl';
 
 const barStyle = {
-    margin: 15,
+    margin: 15
 };
 
-const SearchBar = ({onChange}) => (
-    <div style={barStyle}>
+const SearchBar = ({onChange, onSubmit}) => (
+    <form style={barStyle} onSubmit={onSubmit}>
         <FieldGroup
             id="formControlsText"
             type="text"
@@ -14,7 +14,7 @@ const SearchBar = ({onChange}) => (
             placeholder="Search"
             onChange={onChange}
         />
-    </div>
+    </form>
 );
 
 export default SearchBar;

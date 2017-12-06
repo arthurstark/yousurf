@@ -6,15 +6,21 @@ class SearchContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleFilterTextChange(e) {
+    handleChange(e) {
         this.props.onFilterTextChange(e.target.value);
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.onFilterTextSubmit();
+    }
+
     render() {
-        return <SearchBar onChange={this.handleFilterTextChange}/>;
+        return <SearchBar onChange={this.handleChange} onSubmit={this.handleSubmit}/>;
     }
 }
 

@@ -8,16 +8,24 @@ class FilterableVideoList extends React.Component {
         super(props);
 
         this.state = {
-            filterText: ''
+            filterText: false,
+            searchSubmitted: false
         };
 
         this.onFilterTextChange = this.onFilterTextChange.bind(this);
+        this.onFilterTextSubmit = this.onFilterTextSubmit.bind(this);
     };
 
     onFilterTextChange(filterText) {
-        console.log(filterText);
         this.setState({
-            filterText: filterText
+            filterText: filterText,
+            searchSubmitted: false
+        });
+    }
+
+    onFilterTextSubmit() {
+        this.setState({
+            searchSubmitted: true
         });
     }
 
@@ -25,9 +33,13 @@ class FilterableVideoList extends React.Component {
         return (
             <section>
                 <SearchContainer
-                    onFilterTextChange = {this.onFilterTextChange}
+                    onFilterTextChange={this.onFilterTextChange}
+                    onFilterTextSubmit={this.onFilterTextSubmit}
                 />
-                <VideoContainer/>
+                <VideoContainer
+                    filterText={this.state.filterText}
+                    searchSubmitted={this.state.searchSubmitted}
+                />
             </section>
         );
     }

@@ -1,8 +1,11 @@
-export const getVideos = (callback, nextPageToken) => {
+export const getVideos = (callback, nextPageToken, filterText) => {
 
     let apiEndpoint = 'https://www.googleapis.com/youtube/v3/search' +
-        '?key=AIzaSyBeimXtjgzfQcogY-fP8_CHPybmLpFaieo&part=snippet&type=video&q=surf&maxResults=8';
+        '?key=AIzaSyBeimXtjgzfQcogY-fP8_CHPybmLpFaieo&part=snippet&type=video&maxResults=8&q=surf';
 
+    if (filterText) {
+        apiEndpoint += ' ' + filterText;
+    }
 
     if (nextPageToken) {
         apiEndpoint += '&pageToken=' + nextPageToken;
