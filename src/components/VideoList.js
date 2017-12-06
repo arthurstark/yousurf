@@ -1,13 +1,8 @@
 import React from 'react';
-import Row from 'react-bootstrap/lib/Row';
 import VideoCard from './VideoCard';
 
-const rowPadding = {
-    padding: 15
-};
-
 const VideoList = ({videos}) => (
-    <Row style={rowPadding}>
+    <div>
         {videos.map((video, i) => {
 
             let thumbnailSrc = video.snippet.thumbnails.medium.url;
@@ -23,7 +18,7 @@ const VideoList = ({videos}) => (
                 />
             );
         })}
-    </Row>
+    </div>
 );
 
 export default VideoList;
