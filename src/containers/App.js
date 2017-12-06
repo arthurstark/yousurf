@@ -4,7 +4,7 @@ import FilterableVideoList from "./FilterableVideoList";
 
 class App extends Component {
     render() {
-        return <FilterableVideoList />;
+        return <FilterableVideoList/>;
     }
 }
 
