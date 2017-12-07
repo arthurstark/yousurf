@@ -1,11 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './App.css';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import FilterableVideoList from "./FilterableVideoList";
+import WatchContainer from "./WatchContainer";
 
-class App extends Component {
-    render() {
-        return <FilterableVideoList/>;
-    }
-}
+const App = () => (
+    <Router>
+        <div>
+            <Route exact path="/" component={FilterableVideoList}/>
+            <Route path="/watch" component={WatchContainer}/>
+        </div>
+    </Router>
+);
 
 export default App;
