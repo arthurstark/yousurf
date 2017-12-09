@@ -3,6 +3,7 @@ import VideoList from '../components/VideoList';
 import {getVideos} from "../api";
 import InfiniteScroll from 'react-infinite-scroller';
 import FontAwesome from 'react-fontawesome';
+import NoResults from '../components/NoResults';
 
 class VideoContainer extends React.Component {
 
@@ -27,8 +28,14 @@ class VideoContainer extends React.Component {
             hasMoreAPIPages = true;
         }
 
+        let videos = this.state.videos.concat(response.items);
+
+        if (response.items.length === 0) {
+            videos = undefined;
+        }
+
         this.setState({
-            videos: this.state.videos.concat(response.items),
+            videos: videos,
             nextAPIPageToken: response.nextPageToken,
             hasMoreAPIPages: hasMoreAPIPages
         });
@@ -65,6 +72,12 @@ class VideoContainer extends React.Component {
             className='text-center'
         />;
 
+        let videoList = <VideoList videos={this.state.videos}/>;
+
+        if (this.state.videos === undefined) {
+            videoList = <NoResults filterText={this.props.filterText}/>;
+        }
+
         return (
             <InfiniteScroll
                 loadMore={this.loadVideos}
@@ -72,9 +85,7 @@ class VideoContainer extends React.Component {
                 loader={loader}
                 hasMore={this.state.hasMoreAPIPages}>
 
-                <VideoList
-                    videos={this.state.videos}
-                />
+                {videoList}
 
             </InfiniteScroll>
         )
