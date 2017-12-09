@@ -6,7 +6,7 @@ import WatchContainer from "./WatchContainer";
 
 const App = () => (
     <Router>
-        <div>
+        <div className='container'>
             <Route exact path="/" component={FilterableVideoList}/>
             <Route path="/watch" component={WatchContainer}/>
         </div>

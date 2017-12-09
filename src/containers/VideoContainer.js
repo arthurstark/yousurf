@@ -2,6 +2,7 @@ import React from 'react';
 import VideoList from '../components/VideoList';
 import {getVideos} from "../api";
 import InfiniteScroll from 'react-infinite-scroller';
+import FontAwesome from 'react-fontawesome';
 
 class VideoContainer extends React.Component {
 
@@ -10,7 +11,8 @@ class VideoContainer extends React.Component {
 
         this.state = {
             videos: [],
-            nextAPIPageToken: false
+            nextAPIPageToken: false,
+            hasMoreAPIPages: true
         };
 
         this.setVideos = this.setVideos.bind(this);
@@ -18,9 +20,17 @@ class VideoContainer extends React.Component {
     }
 
     setVideos(response) {
+
+        let hasMoreAPIPages = false;
+
+        if (response.nextPageToken) {
+            hasMoreAPIPages = true;
+        }
+
         this.setState({
             videos: this.state.videos.concat(response.items),
             nextAPIPageToken: response.nextPageToken,
+            hasMoreAPIPages: hasMoreAPIPages
         });
     }
 
@@ -31,7 +41,8 @@ class VideoContainer extends React.Component {
     resetVideos() {
         this.setState({
             videos: [],
-            nextAPIPageToken: false
+            nextAPIPageToken: false,
+            hasMoreAPIPages: true
         });
     }
 
@@ -42,14 +53,24 @@ class VideoContainer extends React.Component {
     }
 
     render() {
-        const loader = <div className="loader text-center" style={{width: '100%'}}>Loading ...</div>;
+        const loader = <FontAwesome
+            name='circle-o-notch'
+            size='2x'
+            spin
+            style={{
+                width: '100%',
+                color: 'gray',
+                marginTop: 20
+            }}
+            className='text-center'
+        />;
 
         return (
             <InfiniteScroll
                 loadMore={this.loadVideos}
                 initialLoad={true}
                 loader={loader}
-                hasMore={true}>
+                hasMore={this.state.hasMoreAPIPages}>
 
                 <VideoList
                     videos={this.state.videos}

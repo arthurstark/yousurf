@@ -2,7 +2,8 @@ import React from 'react';
 import Panel from 'react-bootstrap/lib/Panel';
 
 const panelStyle = {
-    height: 375
+    overflow: 'hidden',
+    height: 430
 };
 
 const thumbnailStyle = {
@@ -10,7 +11,8 @@ const thumbnailStyle = {
 };
 
 const titleStyle = {
-    wordWrap: 'break-word'
+    wordWrap: 'break-word',
+    marginBottom: 20
 };
 
 const descriptionStyle = {
@@ -19,7 +21,7 @@ const descriptionStyle = {
 
 const VideoCard = ({thumbnailSrc, title, description, onClick}) => (
     <Panel onClick={onClick} style={panelStyle}>
-        <img src={thumbnailSrc} style={thumbnailStyle} alt={title} fill/>
+        <img fill src={thumbnailSrc} style={thumbnailStyle} alt={title}/>
         <h4 style={titleStyle}>{title}</h4>
         <p style={descriptionStyle}>{description}</p>
     </Panel>

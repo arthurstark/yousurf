@@ -2,6 +2,7 @@ import React from 'react';
 import VideoCard from './VideoCard';
 import {Link} from "react-router-dom";
 import {Col} from "react-bootstrap";
+import {truncate} from "../utils/string-utils";
 
 const VideoList = ({videos}) => (
     <div>
@@ -12,9 +13,11 @@ const VideoList = ({videos}) => (
             let title = video.snippet.title;
             let description = video.snippet.description;
 
+            description = truncate.apply(description, [200, true]);
+
             return (
-                <Col sm={3}>
-                    <Link to={`/watch/${videoId}`} key={i}>
+                <Col sm={4} key={i}>
+                    <Link to={`/watch/${videoId}`} style={{textDecoration: 'none'}}>
                         <VideoCard
                             thumbnailSrc={thumbnailSrc}
                             title={title}

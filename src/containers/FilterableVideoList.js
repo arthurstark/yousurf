@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchContainer from './SearchContainer';
 import VideoContainer from './VideoContainer';
+import Navbar from 'react-bootstrap/lib/Navbar';
 
 class FilterableVideoList extends React.Component {
 
@@ -32,14 +33,18 @@ class FilterableVideoList extends React.Component {
     render() {
         return (
             <section>
-                <SearchContainer
-                    onFilterTextChange={this.onFilterTextChange}
-                    onFilterTextSubmit={this.onFilterTextSubmit}
-                />
+                <Navbar fixedTop={true}>
+                    <SearchContainer
+                        onFilterTextChange={this.onFilterTextChange}
+                        onFilterTextSubmit={this.onFilterTextSubmit}
+                    />
+                </Navbar>
+
                 <VideoContainer
                     filterText={this.state.filterText}
                     searchSubmitted={this.state.searchSubmitted}
                 />
+
             </section>
         );
     }

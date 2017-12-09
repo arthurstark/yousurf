@@ -9,12 +9,8 @@ const opts = {
     }
 };
 
-const videoDivStyle = {
-    marginTop: 20,
-};
-
 const Watch = ({match}) => (
-    <div className='text-center' style={videoDivStyle}>
+    <div className='text-center'>
         <YouTube
             videoId={match.params.videoId}
             opts={opts}
