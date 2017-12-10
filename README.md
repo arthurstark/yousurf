@@ -1,5 +1,7 @@
 This project was built to showcase my (awesome) React skills.
 
+<img src="https://raw.githubusercontent.com/wiki/arthurstark/yousurf/images/yousurf-demo.png" width="720" height="393">
+
 ## Project goals:
 - A home page that lists surfing videos
     - Infinite scrolling (react-infinite-scroller)
@@ -9,9 +11,14 @@ This project was built to showcase my (awesome) React skills.
 - Bootstrap styled (react-bootstrap + react-fontawesome)
 
 ## To run locally:
-- `npm install`
-- `npm start`
+```
+npm install
+npm start
+```
 
 Or if you prefer yarn
-- `yarn install`
-- `yarn start`
+
+```
+yarn install
+yarn start
+```
