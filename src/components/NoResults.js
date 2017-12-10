@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class NoResults extends React.Component {
 
@@ -12,5 +13,9 @@ class NoResults extends React.Component {
         );
     }
 }
+
+NoResults.propTypes = {
+    filterText: PropTypes.string.isRequired
+};
 
 export default NoResults;

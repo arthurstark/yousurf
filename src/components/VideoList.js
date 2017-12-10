@@ -3,6 +3,7 @@ import VideoCard from './VideoCard';
 import {Link} from "react-router-dom";
 import {Col} from "react-bootstrap";
 import {truncate} from "../utils/string-utils";
+import PropTypes from 'prop-types';
 
 const VideoList = ({videos}) => (
     <div>
@@ -29,5 +30,24 @@ const VideoList = ({videos}) => (
         })}
     </div>
 );
+
+VideoList.propTypes = {
+    videos: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.shape({
+                videoId: PropTypes.string.isRequired
+            }).isRequired,
+            snippet: PropTypes.shape({
+                thumbnails: PropTypes.shape({
+                    medium: PropTypes.shape({
+                        url: PropTypes.string.isRequired
+                    }).isRequired
+                }),
+                title: PropTypes.string.isRequired,
+                description: PropTypes.string.isRequired
+            }).isRequired
+        })
+    ).isRequired
+};
 
 export default VideoList;

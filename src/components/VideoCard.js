@@ -1,5 +1,6 @@
 import React from 'react';
 import Panel from 'react-bootstrap/lib/Panel';
+import PropTypes from 'prop-types';
 
 const panelStyle = {
     overflow: 'hidden',
@@ -26,5 +27,12 @@ const VideoCard = ({thumbnailSrc, title, description, onClick}) => (
         <p style={descriptionStyle}>{description}</p>
     </Panel>
 );
+
+VideoCard.propTypes = {
+    thumbnailSrc: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    onClick: PropTypes.func
+};
 
 export default VideoCard;

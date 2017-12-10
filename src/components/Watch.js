@@ -1,5 +1,6 @@
 import React from 'react';
 import YouTube from 'react-youtube';
+import PropTypes from 'prop-types';
 
 const opts = {
     height: '480',
@@ -17,5 +18,13 @@ const Watch = ({match}) => (
         />
     </div>
 );
+
+Watch.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            videoId: PropTypes.string.isRequired
+        }).isRequired
+    }).isRequired
+};
 
 export default Watch;
